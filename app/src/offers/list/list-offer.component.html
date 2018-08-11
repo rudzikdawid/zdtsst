@@ -1,0 +1,56 @@
+<md-content class="flex layout-row layout-fill layout-align-center-center">
+
+    <div class="flex-66 layout-padding">
+
+        <div ng-if="!$ctrl.offers.length"
+             class="layout-column flex layout-align-center-center">
+            No offers. Please add one.
+        </div>
+
+        <md-card class="layout-column"
+                 ng-repeat="offer in $ctrl.offers track by $index">
+
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline" ng-bind="offer.title"></span>
+                    <span class="md-subhead" ng-bind="offer.company"></span>
+                </md-card-title-text>
+            </md-card-title>
+
+            <md-card-content>
+                <md-divider></md-divider>
+
+                <dl>
+                    <dt>
+                        <md-icon aria-label="salary"
+                                 ng-bind="'attach_money'">
+                        </md-icon>
+                        <span>salary</span>
+                    </dt>
+                    <dd>{{offer.salaryMin}} - {{offer.salaryMax}} [PLN]</dd>
+
+                    <dt>
+                        <md-icon aria-label="city"
+                                 ng-bind="'location_on'">
+                        </md-icon>
+                        <span>city</span>
+                    </dt>
+                    <dd ng-bind="offer.city"></dd>
+                </dl>
+
+            </md-card-content>
+
+        </md-card>
+
+    </div>
+
+    <md-button class="md-fab md-primary md-fab-bottom-right"
+               style="position: fixed"
+               aria-label="add offer"
+               ui-sref="addOffer">
+        <md-tooltip md-direction="left">Add new posting</md-tooltip>
+        <md-icon ng-bind="'add'">
+        </md-icon>
+    </md-button>
+
+</md-content>

@@ -1,0 +1,114 @@
+<md-content class="flex layout-row layout-fill layout-align-center-center">
+
+    <form name="addOfferForm"
+          class="flex-66 layout-padding"
+          ng-submit="$ctrl.addOffer($ctrl.offer)"
+          novalidate>
+
+        <md-card class="flex layout-column">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Adding new offer</span>
+                </md-card-title-text>
+            </md-card-title>
+
+            <md-card-content>
+                <div class="layout-row">
+                    <md-input-container class="flex">
+                        <label>title</label>
+                        <input type="title"
+                               name="street"
+                               ng-model="$ctrl.offer.title"
+                               required>
+                    </md-input-container>
+
+                    <md-input-container class="flex">
+                        <label>company</label>
+                        <input type="text"
+                               name="company"
+                               ng-model="$ctrl.offer.company"
+                               required>
+                    </md-input-container>
+                </div>
+
+                <div class="layout-row">
+                    <md-input-container class="flex">
+                        <label>min salary</label>
+                        <input type="number"
+                               name="salaryMin"
+                               min="1"
+                               ng-model="$ctrl.offer.salaryMin"
+                               required>
+                    </md-input-container>
+
+                    <md-input-container class="flex">
+                        <label>max salary</label>
+                        <input type="number"
+                               name="salaryMax"
+                               ng-min="$ctrl.offer.salaryMin + 1"
+                               ng-max="$ctrl.offer.salaryMin * 2"
+                               ng-model="$ctrl.offer.salaryMax"
+                               required>
+
+                        <div ng-messages="addOfferForm.salaryMax.$error"
+                             role="alert"
+                             multiple>
+                            <div ng-message="min"
+                                 class="my-message">
+                                the maximum salary should not be less than the minimum salary
+                            </div>
+                            <div ng-message="max"
+                                 class="my-message">
+                                the maximum salary should not be more than twice of the minimum salary
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div class="layout-row">
+                    <md-input-container class="flex">
+                        <label>city</label>
+                        <input type="text"
+                               name="city"
+                               ng-model="$ctrl.offer.city"
+                               required>
+                    </md-input-container>
+
+                    <md-input-container class="flex">
+                        <label>street</label>
+                        <input type="text"
+                               name="street"
+                               ng-model="$ctrl.offer.street"
+                               required>
+                    </md-input-container>
+
+                    <md-input-container class="flex">
+                        <label>postal code</label>
+                        <input type="text"
+                               name="postalCode"
+                               ng-model="$ctrl.offer.postalCode"
+                               pattern="^\d{2}-\d{3}$"
+                               required>
+                    </md-input-container>
+                </div>
+            </md-card-content>
+
+            <md-card-actions class="layout-row layout-align-end-center">
+                <md-button class="md-primary"
+                           ui-sref="listOffer">
+                    Cancel
+                </md-button>
+
+                <md-button class="md-primary"
+                           name="submit"
+                           type="submit"
+                           ng-disabled="addOfferForm.$invalid">
+                    Add new posting
+                </md-button>
+            </md-card-actions>
+
+        </md-card>
+
+    </form>
+
+</md-content>
